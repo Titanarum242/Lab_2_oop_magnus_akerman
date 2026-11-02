@@ -24,8 +24,8 @@ class Rectangle:
 
     @property
     def rectangle_center(self) -> Translate:
-        center_x = self._translate[0] + self._base / 2
-        center_y = self._translate[1] + self._height / 2
+        center_x = self._translate.x + self._base / 2
+        center_y = self._translate.y + self._height / 2
         return Translate(center_x, center_y)
 
     @property

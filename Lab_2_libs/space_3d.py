@@ -18,7 +18,17 @@ class Translate:
             self._numbers = (self._numbers[0],0.0, 0.0)
         if len(self._numbers) ==2:
             self._numbers = (self._numbers[0], self._numbers[1], 0.0)
-         
+
+    @property
+    def x(self) -> float:
+        return self._numbers[0] 
+    @property
+    def y(self) -> float:
+        return self._numbers[1]
+    @property
+    def z(self) -> float:
+        return self._numbers[2]
+
     def __eq__(self, other):
         if not isinstance(other, Translate):
             return NotImplemented
@@ -28,4 +38,4 @@ class Translate:
         return self._numbers[index]
 
     def __repr__(self) -> str:
-        return f"Translate(x={self._numbers[0]}, y={self._numbers[1]}, z={self._numbers[2]})"
+        return f"(x={self._numbers[0]}, y={self._numbers[1]}, z={self._numbers[2]})"
