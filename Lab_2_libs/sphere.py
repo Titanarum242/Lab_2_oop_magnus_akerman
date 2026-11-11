@@ -1,16 +1,21 @@
 import numpy as np
 from space_3d import Translate
-class Sphere:
-    
-    def __init__(self, radius: float, Translate: Translate) -> tuple:
+class Sphere(Translate):
+
+    def __init__(self, radius: float, translate: Translate) -> tuple:
+        Translate.__init__(self, *translate)
         self._radius = radius
-        self._translate = Translate
+        self._translate = translate
+        
+       
 
-        if not isinstance(self._radius, (int, float)):
-            raise TypeError(f"Expected int or float, got {type(self._radius).__name__}")
-        if self._radius <= 0:
-            raise ValueError("Radius must be a positive number")
 
+        #if not isinstance(self._radius, (int, float)):
+            #raise TypeError(f"Expected int or float, got {type(self._radius).__name__}")
+        #if self._radius <= 0:
+            #raise ValueError("Radius must be a positive number")
+
+         
     @property
     def volume(self) -> float:
         return (4/3) * np.pi * self._radius**3
@@ -34,4 +39,18 @@ class Sphere:
 
     def __repr__(self) -> str:
         return f"Sphere(radius={self._radius}, center_coordinates:{self._translate})"
+
+if __name__ == "__main__":
+    s1= Sphere(5, Translate())
+    
+    print(s1._x)
+    s1.move(1, 2, 3)
+    print(s1._translate._y)
+    
+    print(s1._translate)
+    
+    
+    
+
+
 

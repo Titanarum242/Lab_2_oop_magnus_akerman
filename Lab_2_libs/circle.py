@@ -1,10 +1,10 @@
 import numpy as np
 from space_3d import Translate
 
-class Circle:
-    def __init__(self, radius: float, Translate: Translate) -> tuple:
+class Circle(Translate):
+    def __init__(self, radius: float, translate: Translate) -> tuple:
         self._radius = radius
-        self._translate = Translate
+        self._translate = translate
 
         if not isinstance(self._radius, (int, float)):
                 raise TypeError(f"Expected int or float, got {type(self._radius).__name__}")
@@ -34,5 +34,14 @@ class Circle:
         return f"Circle(radius={self._radius}, center_coordinates:{self._translate})"
 
 
+if __name__ == "__main__":
+    
+    c1=Circle(5, Translate())
+    print(c1)
+    c1.move(3, 4, 5)
+    print(c1)
+    
 
+
+   
     

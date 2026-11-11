@@ -2,11 +2,11 @@
 from space_3d import Translate
 
 
-class Cube:
+class Cube(Translate):
     
-    def __init__(self, side_length: float, Translate: Translate) -> tuple:
+    def __init__(self, side_length: float, translate: Translate) -> tuple:
         self._side_length = side_length
-        self._translate = Translate
+        self._translate = translate
 
         if not isinstance(self._side_length, (int, float)):
             raise TypeError(f"Expected int or float, got {type(self._side_length).__name__}")
@@ -23,9 +23,9 @@ class Cube:
     
     @property
     def cube_center(self) -> Translate:
-        center_x = self._translate[0] + self._side_length / 2
-        center_y = self._translate[1] + self._side_length / 2
-        center_z = self._translate[2] + self._side_length / 2
+        center_x = self._translate.x + self._side_length / 2
+        center_y = self._translate.y + self._side_length / 2
+        center_z = self._translate.z + self._side_length / 2
         return Translate(center_x, center_y, center_z)
 
     @property
@@ -39,3 +39,9 @@ class Cube:
 
     def __repr__(self) -> str:
         return f"Cube(side_length={self._side_length}, center_coordinates:{self.cube_center})"
+
+if __name__ == "__main__":
+    c7=Cube(3, Translate(1, 2, 3))
+    print(c7)
+    c7.move(3, 4, 5)
+    print(c7)

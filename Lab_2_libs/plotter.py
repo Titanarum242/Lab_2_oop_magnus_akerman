@@ -1,5 +1,5 @@
 import numpy as np
-from Lab_2_libs.sphere import Sphere
+from sphere import Sphere
 from space_3d import Translate
 import matplotlib.pyplot as plt
 from mpl_toolkits.mplot3d import Axes3D
@@ -54,3 +54,9 @@ class Plot3D:
 
         plt.show()
 
+if __name__ == "__main__":
+    plotter = Plot3D()
+    plotter.add_sphere(Sphere(2, Translate(0, 0, 0)), color="r")
+    plotter.add_sphere(Sphere(1, Translate(3, 3, 3)), color="g")
+    plotter.add_sphere(Sphere(1.5, Translate(-3, -3, -3)), color="b")
+    plotter.plot()

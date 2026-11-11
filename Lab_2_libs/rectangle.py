@@ -1,12 +1,15 @@
 import numpy as np
 from space_3d import Translate
 
-class Rectangle:
+class Rectangle(Translate):
 
-    def __init__(self, base: float, height: float, Translate: Translate) -> tuple:
+    def __init__(self, base: float, height: float, translate: Translate) -> tuple:
         self._base = base
         self._height = height
-        self._translate = Translate
+        self._translate = translate
+        
+        
+            
 
         if not isinstance(self._base and self._height, (int, float)):
             raise TypeError(f"Expected int or float, got {type(self._base).__name__}")
@@ -43,3 +46,13 @@ class Rectangle:
 
     def __repr__(self) -> str:
         return f"Rectangle(base={self._base}, height={self._height}, center_coordinates:{self.rectangle_center})"
+
+if __name__ == "__main__":
+    r1= Rectangle(4, 5, Translate(1, 2))
+    print(r1)
+    r1.move(3, 4)
+    print(r1)
+    r3=Rectangle(5,7, Translate(1,6,))
+    print(r3)
+    r3.move(2,3)
+    print(r3)
