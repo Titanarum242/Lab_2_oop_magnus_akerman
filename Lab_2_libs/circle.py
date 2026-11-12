@@ -1,8 +1,10 @@
 import numpy as np
 from space_3d import Translate
 
+""" Circle subclass inherits composition from Translate superclass """
 class Circle(Translate):
     def __init__(self, radius: float, translate: Translate) -> tuple:
+        Translate.__init__(self, *translate)
         self._radius = radius
         self._translate = translate
 
@@ -21,10 +23,31 @@ class Circle(Translate):
     @property
     def circle_center(self) -> Translate:
         return self._translate
-    @property
+    
     def check_unity(self) -> bool:
         return self._radius == 1.0
         
+    def __lt__ (self, other) -> bool:
+        if not isinstance(other, Circle):
+            return NotImplemented
+        return self._radius < other._radius
+    
+    def __gt__(self, other) -> bool:
+        if not isinstance(other, Circle):
+            return NotImplemented
+        return self._radius > other._radius
+            
+    def __le__ (self, other) -> bool:
+        if not isinstance(other, Circle):
+            return NotImplemented
+        return self._radius <= other._radius
+
+    def __ge__ (self, other) -> bool:
+        if not isinstance(other, Circle):
+            return NotImplemented
+        return self._radius >= other._radius
+    
+    
     def __eq__(self, other):
         if not isinstance(other, Circle):
             return NotImplemented
@@ -38,8 +61,15 @@ if __name__ == "__main__":
     
     c1=Circle(5, Translate())
     print(c1)
-    c1.move(3, 4, 5)
-    print(c1)
+    c1.move(7, 4, 5)
+    print(c1.circle_center._x)
+    print(c1._x)
+    c3=Circle(3, Translate(1, 2, 3))
+    print(c3<c1)
+    print(c3>c1)
+    print(c3<=c1)
+    print(c3>=c1)
+
     
 
 

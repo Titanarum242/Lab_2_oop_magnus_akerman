@@ -5,6 +5,7 @@ from space_3d import Translate
 class Cube(Translate):
     
     def __init__(self, side_length: float, translate: Translate) -> tuple:
+        Translate.__init__(self, *translate)
         self._side_length = side_length
         self._translate = translate
 
@@ -23,15 +24,35 @@ class Cube(Translate):
     
     @property
     def cube_center(self) -> Translate:
-        center_x = self._translate.x + self._side_length / 2
-        center_y = self._translate.y + self._side_length / 2
-        center_z = self._translate.z + self._side_length / 2
+        center_x = self._translate._x + self._side_length / 2
+        center_y = self._translate._y + self._side_length / 2
+        center_z = self._translate._z + self._side_length / 2
         return Translate(center_x, center_y, center_z)
 
     @property
     def check_unity(self) -> bool:
         return self._side_length == 1.0
-
+    
+    def __lt__(self, other) -> bool:
+        if not isinstance(other, Cube):
+            return NotImplemented
+        return self._side_length < other._side_length
+    
+    def __gt__(self, other) -> bool:
+        if not isinstance(other, Cube):
+            return NotImplemented
+        return self._side_length > other._side_length
+    
+    def __le__(self, other) -> bool:
+        if not isinstance(other, Cube):
+            return NotImplemented
+        return self._side_length <= other._side_length
+    
+    def __ge__(self, other) -> bool:
+        if not isinstance(other, Cube):
+            return NotImplemented
+        return self._side_length >= other._side_length
+    
     def __eq__(self, other):
         if not isinstance(other, Cube):
             return NotImplemented

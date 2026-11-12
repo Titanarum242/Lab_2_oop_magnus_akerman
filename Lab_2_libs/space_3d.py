@@ -1,11 +1,15 @@
 class Translate:
+    """Represents a point in 3D space. (x, y, z)
+    The Translate class allows for the representation of a point in three-dimensional space using x, y, and z coordinates. 
+    
+    """
 
     def __init__(self, *numbers: float|int):
         for number in numbers:
             if not isinstance(number, (int, float)):
-                raise TypeError(f"Expected int or float, got {type(number).__name__}")
+                raise TypeError(f"Please enter int or float, got {type(number).__name__}!")
         
-        
+        """ check if numbers entered are more than three"""
         if len(numbers) > 3:
             raise ValueError("At most three numbers are allowed")
 
@@ -31,6 +35,16 @@ class Translate:
         return self._numbers[2]
     
     def move(self, *coords: float|int):
+        
+        """
+        Move the point to the specified new coordinates.
+
+        Creates a new "_translate" attribute from the instanced Translate object with new coordinates in x,y,z directions.
+
+        The new coordinates are calculated by adding the provided coordinates to the current coordinates of the Translate object.
+        
+        If fewer than three coordinates are provided, the missing coordinates are set to zero by default.
+        """
 
         for coord in coords:
             if not isinstance(coord, (int, float)):
@@ -48,11 +62,9 @@ class Translate:
         if len(coords) ==3:
             self._coords = (coords[0], coords[1], coords[2])
 
-        
-        self._translate = Translate(self._x+self._coords[0],self._y+self._coords[1],self._z+self._coords[2])
-        
-
-            
+        """create new attribute _translate to be able to fetch the new position"""
+        self._translate = Translate(self._x+self._coords[0], self._y+self._coords[1], self._z+self._coords[2])
+               
 
     def __eq__(self, other):
         if not isinstance(other, Translate):
@@ -70,3 +82,5 @@ if __name__ == "__main__":
     t1=Translate()
     t1.move(1, 2, 3)
     print(t1)
+    print(type(t1))
+    print(type(t1._translate))
